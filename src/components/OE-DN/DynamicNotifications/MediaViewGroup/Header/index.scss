@@ -1,0 +1,53 @@
+@import '../../../variables.scss';
+
+.oe-featured-layout-group-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  margin-bottom: 5px;
+
+  &-title-bar {
+    width: 100%;
+    height: 100%;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+
+    img {
+      z-index: 0;
+      height: 30px;
+      margin-left: $gutter;
+    }
+
+    span {
+      z-index: 0;
+      padding-left: 5px;
+      font-weight: bold;
+      font-size: $font-size-group-title;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-left: 3 * $gutter;
+
+      @media only screen and (max-width: 500px) {
+        font-weight: bold;
+        font-size: $font-size-group-title - 2px;
+        line-height: 90%;
+      }
+    }
+  }
+
+  &-time-bar {
+    height: 100%;
+    width: 100%;
+    align-self: flex-end;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    font-family: 'Avenir Next Condensed';
+    font-size: $font-size-group-footer;
+    font-stretch: ultra-expanded;
+  }
+}

@@ -1,0 +1,42 @@
+.Oe-Gray-Panel {
+  .btn-dismiss {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 4;
+    cursor: pointer;
+  }
+}
+.myPanel {
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  padding: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+
+  //-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
+  //box-shadow: 0 0 10px rgba(0, 0, 0, 0.55);
+  // border-radius: 1px;
+  // border-top: 1px solid #C5C5C5;
+  // border-right: 1px solid #C5C5C5;
+  border-left: none;
+  border-bottom: none;
+  height: auto;
+  padding-top: 38px;
+
+  transition: width 0.5s;
+}
+.react-resizable {
+  position: relative;
+}
+
+.react-resizable-handle {
+  position: absolute;
+  width: 8px;
+  height: calc(100% - 80px);
+  top: 80px;
+  right: 0px;
+  box-sizing: border-box;
+  cursor: col-resize;
+}

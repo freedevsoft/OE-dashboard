@@ -1,0 +1,80 @@
+.oe-schedule-form {
+  .ant-form-item {
+    margin-bottom: 12px;
+  }
+  .ant-checkbox-group-item {
+    line-height: 32px;
+  }
+  #comp\.schedule\.recurrenceType {
+    width: 100%;
+    max-width: 375px;
+  }
+  &-repeatsevery {
+    display: flex;
+    &-label {
+      width: 70px;
+      min-width: 70px;
+      text-align: right;
+      margin-right: 5px;
+      line-height: 16px;
+    }
+    &-pickers {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+
+      .ant-input-number {
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+      .ant-select {
+        max-width: 100px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  &-datetime {
+    display: flex;
+    &-label {
+      width: 70px;
+      min-width: 70px;
+      text-align: right;
+      margin-right: 5px;
+      line-height: 32px;
+    }
+    &-pickers {
+      flex-grow: 1;
+
+      .ant-calendar-picker {
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+      .ant-time-picker {
+        margin-right: 0px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  &-ends {
+    display: flex;
+    &-label {
+      width: 70px;
+      min-width: 70px;
+      text-align: right;
+      margin-right: 5px;
+      line-height: 32px;
+    }
+    &-pickers {
+      flex-grow: 1;
+
+      .ant-calendar-picker {
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+      .ant-time-picker {
+        margin-right: 0px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

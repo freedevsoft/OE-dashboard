@@ -1,0 +1,76 @@
+.stream-form {
+  &-inline {
+    display: flex;
+
+    .dynamic-delete-button {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+
+    &-textarea {
+      width: 470px !important;
+    }
+
+    &-timestamp {
+      width: 250px !important;
+    }
+  }
+
+  .add-new {
+    margin-left: 25px;
+    // border-left: 8px solid gray;
+    // margin-bottom: 30px;
+
+    input {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 6px;
+      width: 61%;
+      border-width: 1px;
+      margin-left: 10px;
+      font-style: italic;
+    }
+  }
+
+  .name {
+    margin-left: 10px;
+  }
+
+  .stream-form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .checkbox-button {
+      align-self: center;
+      transform: translateY(5px);
+      margin: 5px;
+    }
+  }
+
+  .editable-button {
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: right;
+  }
+
+  .ant-legacy-form-item {
+    display: block;
+    margin: 0;
+
+    label {
+      margin-bottom: 0;
+      margin-left: 10px;
+    }
+  }
+
+  .zone {
+    height: 50px;
+    width: 100%;
+    border: 1px dashed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}

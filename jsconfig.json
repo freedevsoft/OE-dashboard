@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "paths": {
+      "utils": ["src/utils"],
+      "components": ["src/components"],
+      "containers": ["src/containers"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,52 @@
+.article-form {
+  height: 100%;
+  padding: 10px !important;
+  .ant-tabs-tabpane {
+    padding: 0 10px;
+  }
+  .ant-tabs {
+    overflow: visible;
+    height: 100%;
+  }
+  .ant-tabs-content {
+    height: calc(100% - 60px);
+  }
+  .ant-tabs-nav .ant-tabs-tab {
+    margin-right: 0;
+    padding-bottom: 6px;
+  }
+  .ant-tabs-nav .ant-tabs-tab-active {
+    font-weight: 800;
+  }
+  .colorTrigger {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 2px;
+  }
+  .html-preview {
+    border: 1px solid black;
+    padding: 10px;
+    &:empty {
+      border: none;
+    }
+    p {
+      margin: 0;
+    }
+  }
+  .ant-form-item-label {
+    padding-right: 5px;
+    label {
+      &:after {
+        content: none;
+      }
+    }
+  }
+  .tab-video {
+    .ant-form-item-label {
+      line-height: 20px;
+    }
+  }
+}

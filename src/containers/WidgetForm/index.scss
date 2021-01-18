@@ -1,0 +1,53 @@
+.oe-contact-form {
+  .ant-form-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    &-label {
+      line-height: 16px;
+      padding-bottom: 0;
+      text-align: right;
+      padding-right: 5px;
+      label {
+        margin-bottom: 0px;
+        font-weight: bold;
+        white-space: normal;
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
+}
+
+.form-item-oz-links {
+  margin-bottom: 5px !important;
+
+  &-inline {
+    display: flex;
+    .dynamic-delete-button {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+    &-pickers {
+      flex-grow: 1;
+      display: inline;
+      flex-wrap: wrap;
+
+      .ant-form-item {
+        margin-bottom: 0px;
+        width: 100%;
+        display: inline-block;
+      }
+      .ant-select {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.ant-checkbox-group-item {
+  display: block !important;
+  margin-right: 8px !important;
+  margin-top: 10px !important;
+}

@@ -1,0 +1,71 @@
+.video-streams-form {
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+  &-modal {
+    .ant-modal-body {
+      padding: 0px;
+      .video-react {
+        .video-react-big-play-button {
+          height: 1.5em;
+          width: 1.5em;
+          top: calc(50% - 22.5px);
+          left: calc(50% - 22.5px);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+
+    margin-bottom: 50px;
+  }
+  li {
+    display: flex !important;
+    align-items: center;
+    line-height: 40px;
+    border-bottom: 1px solid lightgray;
+
+    .state {
+      flex-shrink: 1;
+      min-width: 100px;
+      text-align: center;
+    }
+    .title {
+      flex-grow: 1;
+      cursor: pointer;
+    }
+  }
+
+  .video-react {
+    .video-react-big-play-button {
+      height: 1.5em;
+      width: 1.5em;
+      top: calc(50% - 22.5px);
+      left: calc(50% - 22.5px);
+      border-radius: 50%;
+    }
+  }
+
+  .actions {
+    padding-left: 100px;
+    &-template {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      .label {
+        margin: 0;
+        margin-right: 10px;
+      }
+    }
+
+    .btn-convert {
+      margin-top: 10px;
+    }
+  }
+}

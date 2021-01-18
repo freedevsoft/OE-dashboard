@@ -1,0 +1,190 @@
+@font-face {
+  font-family: "Avenir Next";
+  src: url("/assets/fonts/Avenir Next/AvenirNext-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir Next";
+  src: url("/assets/fonts/Avenir Next/AvenirNext-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir Next";
+  src: url("/assets/fonts/Avenir Next/AvenirNext-DemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Avenir Next";
+  src: url("/assets/fonts/Avenir Next/AvenirNext-DemiBold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Avenir Next";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+code {
+  font-family: "Avenir Next";
+}
+
+#root {
+  height: 100%;
+}
+
+#root > div {
+  height: 100%;
+}
+
+#root > div > div {
+  height: 100%;
+}
+
+svg {
+  vertical-align: initial;
+}
+
+.ant-input-search {
+  // left: 80px !important;
+  // top: 0px;
+  // width: 180px !important;
+  // height: 39px;
+  // position: absolute !important;
+}
+
+.ant-tree {
+  svg {
+    margin-bottom: 2px;
+  }
+  input {
+    color: black;
+  }
+}
+
+.ant-tree.ant-tree-directory > li span.ant-tree-node-content-wrapper.ant-tree-node-selected,
+.ant-tree.ant-tree-directory .ant-tree-child-tree > li span.ant-tree-node-content-wrapper.ant-tree-node-selected {
+  // color: white !important;
+  // background: rgb(101, 96, 95) !important;
+  font-weight: bolder;
+
+  span {
+    // color: white !important;
+  }
+}
+
+.ant-tree.ant-tree-directory > li.ant-tree-treenode-selected > span.ant-tree-node-content-wrapper::before,
+.ant-tree.ant-tree-directory
+  .ant-tree-child-tree
+  > li.ant-tree-treenode-selected
+  > span.ant-tree-node-content-wrapper::before {
+  background: transparent !important;
+}
+
+.ant-tree.ant-tree-directory > li span.ant-tree-node-content-wrapper::before,
+.ant-tree.ant-tree-directory .ant-tree-child-tree > li span.ant-tree-node-content-wrapper::before {
+  height: 32px !important;
+}
+
+.ant-tree li span.ant-tree-switcher,
+.ant-tree li span.ant-tree-iconEle {
+  line-height: 32px !important;
+}
+
+.ant-tree li span[draggable],
+.ant-tree li span[draggable="true"] {
+  line-height: 32px !important;
+  border-top: 0px !important;
+  border-bottom: 1px solid gray !important;
+}
+
+.ant-tree-title {
+  color: black;
+  line-height: 32px;
+}
+
+.ant-tree-node-selected {
+  .ant-tree-title {
+    //  color: white !important;
+  }
+}
+.ant-tree > li:last-child {
+  padding-bottom: 0px !important;
+}
+.ant-tree > li:first-child {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+
+.ant-tree li {
+  margin: 0px 0px !important;
+  padding: 0px !important;
+}
+
+.ant-tree li .ant-tree-node-content-wrapper {
+  height: 32px !important;
+}
+
+.ant-upload-list {
+  display: none;
+}
+
+.public-DraftStyleDefault-block span {
+  color: black;
+}
+
+input {
+  padding: 0px 5px;
+  font-family: "Avenir Next";
+}
+
+textarea {
+  padding: 0px 5px;
+  font-family: "Avenir Next";
+}
+
+.ant-drawer {
+  .ant-drawer-body {
+    padding: 0px;
+    height: 100%;
+    overflow: hidden;
+    .Oe-Gray-Panel {
+      height: 100%;
+    }
+  }
+}
+
+.ant-cascader-menu {
+  height: 300px !important;
+}
+
+.ant-select-search {
+  input {
+    padding: 0px !important;
+  }
+}
+
+.sketch-picker {
+  input {
+    width: 100% !important;
+    line-height: normal !important;
+  }
+  span {
+    line-height: normal !important;
+  }
+}
+
+.jsoneditor {
+  height: 600px;
+}

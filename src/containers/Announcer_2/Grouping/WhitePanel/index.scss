@@ -1,0 +1,243 @@
+.announcer-group-white-form {
+  padding: 10px 10px 0 1px !important;
+  height: 100%;
+
+  .panel-content {
+    padding-top: 30px;
+    position: relative;
+    width: calc(100% - 45px);
+  }
+
+  &-buttongroup {
+    display: flex;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    position: absolute;
+    top: -10px;
+    align-items: flex-start;
+
+    &-button {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      border-radius: 4px;
+    }
+  }
+
+  .ant-tabs {
+    overflow: visible;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .html-preview {
+    border: 1px solid black;
+    padding: 10px 20px 10px 30px;
+
+    &:empty {
+      border: none;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .ant-tabs-content {
+    flex-grow: 1;
+  }
+
+  .ant-tabs-tabpane {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .article-tracking-chart-loading {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .article-tracking-chart-error {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tab-video {
+    .ant-form-item-label {
+      line-height: 20px;
+    }
+
+    .ant-form-item-control {
+      line-height: 20px;
+    }
+  }
+
+  .form-item-tags {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+
+    .ant-form-item-label {
+      line-height: 16px;
+      padding-bottom: 0;
+      text-align: right;
+      padding-right: 5px;
+
+      label {
+        margin-bottom: 0px;
+        font-weight: bold;
+        white-space: normal;
+
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
+
+  body {
+    color: #6699cc;
+    font-size: 22px;
+    font-family: "Helvetica Neue";
+    -webkit-font-smoothing: antialiased;
+    background-color: #c594c5;
+    background: linear-gradient(turquoise, aquamarine);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form-item-canvas-base {
+    margin-bottom: 0;
+
+    >.ant-form-item-label {
+      margin-bottom: 0;
+      line-height: 20px;
+    }
+
+    .ant-form-item {
+      margin-bottom: 0;
+    }
+  }
+
+  .thumbs-up {
+    padding: 0.5em;
+    width: 96px;
+    height: 96px;
+    background-color: rgba(#fff, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(black, 0.2);
+    cursor: pointer;
+
+    &:hover {
+      background-color: white;
+      box-shadow: 0 4px 14px rgba(black, 0.25);
+    }
+
+    &:active {
+      background-color: white;
+      box-shadow: 0 1px 6px rgba(black, 0.25);
+    }
+
+    svg {
+      fill: turquoise;
+    }
+
+    &.is-liked {
+      background-color: white;
+
+      svg {
+        fill: tomato;
+      }
+
+      &:after {
+        content: "+1";
+        display: inline-block;
+        position: absolute;
+        color: tomato;
+        font-weight: bold;
+        font-size: 32px;
+        opacity: 0;
+        animation: fade 500ms;
+      }
+    }
+  }
+
+  .tooltip {
+    $transTime: 300ms;
+    position: relative;
+
+    .tooltip-label {
+      position: absolute;
+      padding: 0.5em;
+      margin-bottom: 1em;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 12em;
+      border-radius: 2px;
+      background-color: #313131;
+      box-shadow: 0 3px 16px rgba(black, 0.15);
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: 0.4em solid transparent;
+        border-top-color: #313131;
+        left: 50%;
+        z-index: -1;
+        transform: translateX(-50%);
+        transition: top $transTime ease;
+      }
+    }
+
+    &.is-visible {
+      .tooltip-label {
+        transform: translateY(0) translateX(-50%);
+        opacity: 1;
+        visibility: visible;
+        transition: transform $transTime ease, opacity $transTime, visibility $transTime 0s;
+
+        &:after {
+          top: 100%;
+        }
+      }
+    }
+
+    &.is-hidden {
+      .tooltip-label {
+        transform: translateY(100%) translateX(-50%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform $transTime ease, opacity $transTime, visibility $transTime $transTime;
+
+        &:after {
+          top: 0;
+        }
+      }
+    }
+  }
+
+  @keyframes fade {
+    0% {
+      top: 0;
+      opacity: 1;
+    }
+
+    100% {
+      top: -1em;
+      opacity: 0;
+    }
+  }
+}

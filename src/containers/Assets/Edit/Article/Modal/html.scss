@@ -1,0 +1,16 @@
+.html-edit-modal {
+  .ant-modal-close-x {
+    display: none;
+  }
+  .ant-modal-body {
+    padding: 0px;
+    .rdw-editor-wrapper-container {
+      margin-bottom: 0px;
+      .rdw-editor-wrapper {
+        box-sizing: border-box;
+        margin-top: 0px;
+        height: 100%;
+      }
+    }
+  }
+}

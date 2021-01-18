@@ -1,0 +1,12 @@
+.collapsedPanelContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  moztransform: translateX(-50%) translateY(-50%) rotate(-90deg);
+  webkittransform: translateX(-50%) translateY(-50%) rotate(-90deg);
+  transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+}
+
+.h4 {
+  margin-top: 10px;
+}

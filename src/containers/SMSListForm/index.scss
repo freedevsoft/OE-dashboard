@@ -1,0 +1,15 @@
+.sms-list-form {
+  .add-new {
+    margin-right: 0px;
+    border-left: 8px solid gray;
+
+    input {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 6px;
+      width: calc(100% - 20px);
+      border-width: 1px;
+      margin-left: 10px;
+    }
+  }
+}

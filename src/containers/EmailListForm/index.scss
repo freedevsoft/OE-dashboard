@@ -1,0 +1,48 @@
+.email-list-form {
+  &-buttongroup {
+    display: flex;
+    margin-bottom: 30px;
+    margin-top: -25px;
+    &-button {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      border-radius: 4px;
+    }
+    &-endbutton {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      border-radius: 4px;
+      margin-left: auto;
+    }
+  }
+  .add-new {
+    margin-right: 0px;
+    border-left: 8px solid gray;
+    margin-bottom: 30px;
+
+    input {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 6px;
+      width: calc(100% - 20px);
+      border-width: 1px;
+      margin-left: 10px;
+    }
+  }
+  .editable-button {
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: right;
+  }
+  .instruction-form-view {
+    margin-left: 25px;
+  }
+}

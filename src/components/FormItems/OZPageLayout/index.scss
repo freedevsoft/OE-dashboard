@@ -1,0 +1,18 @@
+.oz-page-layout-form-item {
+  display: flex;
+  align-items: center;
+
+  .dynamic-button {
+    // margin-right: 5px;
+  }
+
+  .ant-select-enabled {
+    .ant-select-selection--single {
+      height: 32px;
+    }
+  }
+
+  .column-row {
+    flex-grow: 1;
+  }
+}

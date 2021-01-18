@@ -1,0 +1,18 @@
+.oe-media-list-add-modal-form {
+    .ant-form-item {
+        margin-bottom: 0;
+        &-label {
+            padding: 0 !important;
+        }
+    }
+}
+
+form.oe-media-list-add-modal-form {
+    .ant-row.ant-form-item {
+        input#_id {
+            outline: none !important;
+            border: none;
+            box-shadow: none !important;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.palettes-form-style-v2 {
+  margin-bottom: 0;
+  .primary-label {
+    margin-bottom: 0 !important;
+  }
+  .primary-label > .ant-form-item-label > label {
+    font-weight: bold !important;
+    margin-bottom: 0px !important;
+  }
+  .primary-label > .ant-form-item-label {
+    line-height: 35px !important;
+    padding-bottom: 0;
+  }
+  .colorTrigger {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 2px;
+  }
+  .items-flex-row {
+    display: flex;
+    flex-direction: "row";
+    margin-left: 30px;
+    align-items: center;
+    p {
+      width: 100px;
+      margin-bottom: 0;
+    }
+  }
+  .ant-radio-group.ant-radio-group-outline {
+    padding-left: 10px !important;
+  }
+}

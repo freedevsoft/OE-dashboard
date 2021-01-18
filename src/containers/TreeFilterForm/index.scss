@@ -1,0 +1,124 @@
+.form-criterion {
+  .filter-form-buttongroup {
+    display: flex;
+    margin-bottom: 0;
+    margin-top: 0;
+    position: absolute;
+    top: -10px;
+    width: 100%;
+    &-button {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #000;
+      border-radius: 4px;
+    }
+  }
+  &-list {
+    position: relative;
+  }
+
+  .label {
+    font-weight: bold;
+    white-space: normal;
+    color: rgba(0, 0, 0, 0.85);
+    margin-bottom: 0px;
+  }
+
+  .ant-select-selection {
+    height: 32px;
+  }
+
+  .dynamic-delete-button {
+    font-size: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .word-action-inline {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    &-item {
+      display: inline-flex;
+      vertical-align: middle;
+      align-items: center;
+    }
+    .action-select {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    .path {
+      margin-left: 10px;
+    }
+  }
+
+  .criteria:not(:last-child) {
+    border-bottom: 1px solid #d9d9d9;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .criteria {
+    margin-bottom: 5px !important;
+    
+    &-inline {
+      display: flex;
+      align-items: center;
+
+      .criteria-name {
+        width: 200px;
+        margin-right: 10px;
+      }
+      .criteria-opr {
+        width: 120px;
+      }
+    }
+
+    &.add-new {
+      .dynamic-delete-button {
+        visibility: hidden;
+      }
+      .dynamic-add-button {
+        width: 365px;
+      }
+    }
+  }
+
+  .rule {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    margin-left: 35px;
+
+    &-inline {
+      display: flex;
+      align-items: center;
+
+      .rule-type,
+      .rule-value {
+        width: 200px;
+        margin-right: 10px;
+
+        &-btn {
+          width: initial;
+        }
+      }
+      .rule-comparison,
+      .rule-opr {
+        width: 120px;
+        margin-right: 10px;
+      }
+    }
+
+    &.add-new {
+      .dynamic-delete-button {
+        visibility: hidden;
+      }
+      .dynamic-add-button {
+        width: 330px;
+      }
+    }
+  }
+}

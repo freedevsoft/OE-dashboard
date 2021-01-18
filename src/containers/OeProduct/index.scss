@@ -1,0 +1,43 @@
+.oe-product {
+  height: 100%;
+  &-header {
+    height: 36px;
+    background: lightgray;
+    color: black;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    position: relative;
+
+    > span {
+      margin-left: 2rem;
+    }
+
+    > .ant-select {
+      margin-left: 4px !important;
+    }
+
+    &-minimize {
+      height: 18px;
+    }
+
+    &-toggle {
+      position: absolute;
+      top: 3px;
+      right: 5px;
+      cursor: pointer;
+    }
+  }
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 36px);
+    background: #fffbf3;
+    position: relative;
+  }
+
+  &-header-minimize ~ &-body {
+    height: calc(100% - 18px);
+  }
+}

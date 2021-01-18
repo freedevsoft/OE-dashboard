@@ -1,0 +1,12 @@
+.group-inside-panel {
+  .accordion {
+    border: none !important;
+    min-height: 40px;
+  }
+  &-loading {
+    .accordion {
+      min-height: 100px;
+      border: none !important;
+    }
+  }
+}

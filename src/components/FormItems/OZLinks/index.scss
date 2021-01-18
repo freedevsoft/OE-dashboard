@@ -1,0 +1,29 @@
+.form-item-oz-links {
+  margin-bottom: 5px !important;
+
+  &-inline {
+    display: flex;
+    .dynamic-delete-button {
+      font-size: 24px;
+      margin-top: 7px;
+      margin-right: 10px;
+    }
+    &-pickers {
+      flex-grow: 1;
+      display: inline;
+      flex-wrap: wrap;
+
+      .ant-form-item {
+        margin-bottom: 0px;
+        // margin-right: 10px;
+        // width: 220px;
+        width: 100%;
+        display: inline-block;
+      }
+      .ant-select {
+        // width: 50%;
+        display: inline-block;
+      }
+    }
+  }
+}

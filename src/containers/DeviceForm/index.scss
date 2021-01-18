@@ -1,0 +1,166 @@
+.device-form {
+    &-row {
+        margin-bottom: 20px;
+        .ant-row {
+            margin-bottom: 0;
+        }
+        &-body {
+            width: 100%;
+            border: 1px solid black;
+        }
+        &-latlong {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+            &-latitude {
+                display: flex;
+                margin-right: 20px;
+                align-items: center;
+                padding-right: 18px;
+            }
+            p {
+                color: #000;
+                margin-bottom: 0;
+                margin-right: 20px;
+            }
+        }
+    }
+    &-inside {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        &-title {
+            color: black;
+            width: 18%;
+            text-align: right;
+            padding-right: 18px;
+            margin-bottom: 0;
+        }
+        &-list {
+            position: relative;
+            .form-item-groups {
+                margin-bottom: 5px !important;
+
+                &-inline {
+                    display: flex;
+                    align-items: center;
+                    .dynamic-delete-button {
+                        font-size: 24px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+            &-loading {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                background: rgba(200, 200, 200, 0.5);
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        &-dnd-container {
+            height: 30px;
+            display: flex;
+            flex: 1;
+            margin-bottom: 4px;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed;
+            margin-right: 20px;
+        }
+    }
+    &-imagebox {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: -5px;
+        span {
+            align-self: center;
+            margin-top: 0px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        &-title {
+            text-align: right;
+            // width: 12.5%;
+            padding-right: 5px;
+            margin-bottom: 0px;
+            font-weight: bold;
+            color: black;
+        }
+        &-itemgroup {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+            margin-left: 63px;
+            span {
+                margin-left: auto;
+            }
+        }
+        &-item {
+            background-color: #fffcfc;
+            border: 1px solid rgb(59, 57, 57);
+            text-align: center;
+            &-text {
+                width: 50px;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 0px;
+                font-size: 11px;
+                // padding: 25px 30px;
+            }
+            &__item {
+                width: 50px;
+                height: 50px;
+                position: relative;
+                border: 1px solid lightgray;
+                overflow: hidden;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+                &__mask {
+                    background: rgba(255, 255, 0, 0.3);
+                    position: absolute;
+                    width: 50px;
+                    height: 50px;
+                    z-index: 2;
+                    top: 0px;
+                    display: none;
+                    &__close {
+                        position: absolute;
+                        float: right;
+                        background: transparent;
+                        color: white;
+                        border-width: 1px;
+                        font-weight: bold;
+                        top: 0px;
+                        right: 0px;
+                        padding: 0px 5px;
+                        cursor: pointer;
+                    }
+                    &__close:hover {
+                        background: gray;
+                    }
+                }
+            }
+            .device-form-imagebox-item__item:hover {
+                .device-form-imagebox-item__item__mask {
+                    display: inherit;
+                }
+            }
+        }
+    }
+}

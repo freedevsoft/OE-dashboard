@@ -1,0 +1,120 @@
+.group-inside-panel {
+  .accordion {
+    border: none !important;
+    min-height: 40px;
+  }
+
+  &-loading {
+    .accordion {
+      min-height: 100px;
+      border: none !important;
+    }
+  }
+}
+
+// do not define global style
+// this affects to all dropdowns
+.ant-select-enabled {
+  .ant-select-selection--single {
+    // height: 36px;
+  }
+}
+
+.add_new_inputItem {
+  margin-right: 0px;
+  background-color: rgb(36, 45, 60);
+  padding-left: 32px;
+  padding-right: 5px;
+
+  span {
+    // width: 100% !important;
+    display: inline-block;
+
+    input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      padding-left: 9px;
+      color: gray;
+      font-style: italic;
+
+      &::placeholder {
+        color: gray;
+        font-style: italic;
+      }
+    }
+  }
+
+  .oe-addnew-form-item {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+
+    // background-color: rgb(36, 45, 60);
+    // margin-top: 6px;
+    &-icons {
+      margin-right: 10px;
+      align-self: center;
+      width: 35px;
+      text-align: center;
+    }
+  }
+}
+
+.group-type-nav {
+  // background-color: #242d3c;
+  width: calc(100% - 130px);
+  text-align: left;
+  margin-left: 10px;
+  padding: 0px 5px;
+  display: flex;
+  align-items: center;
+
+  .group-type-nav-base {
+    margin-bottom: 0px !important;
+    color: #fff;
+
+    margin-right: 10px;
+  }
+
+  .group-type-breadcrumb {
+    .ant-breadcrumb-link {
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .ant-breadcrumb-separator {
+      color: #fff;
+    }
+  }
+}
+
+.ps-relative {
+  position: relative !important;
+}
+.s-input-icon {
+  right: auto;
+  left: .7em;
+  color: var(--black-200);
+  position: absolute;
+  top: 50%;
+  right: .7em;
+  margin-top: -9px;
+  pointer-events: none;
+}
+.s-input {
+  border-color: var(--black-200);
+  background-color: var(--white);
+  box-shadow: none;
+  color: gray;
+  width: 100%;
+  margin: 0;
+  padding: .6em .7em;
+  font-size: 13px;
+  font-family: inherit;
+  line-height: 1.15384615;
+}
+
+.s-input__search {
+  padding-left: 32px;
+}

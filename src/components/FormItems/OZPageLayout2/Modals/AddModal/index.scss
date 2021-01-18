@@ -1,0 +1,25 @@
+.oe-page-layout-add-modal {
+  .wrapper {
+    display: flex;
+    margin-bottom: 5px;
+
+    .ant-radio-wrapper {
+      line-height: 40px;
+      display: inline-block;
+      padding: 0 12px;
+    }
+
+    .ant-row {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      padding: 0 5px;
+
+      .ant-col {
+        text-align: center;
+        background-color: white;
+        border: 2px solid gray;
+      }
+    }
+  }
+}

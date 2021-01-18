@@ -1,0 +1,49 @@
+.bits-checkbox {
+    &-label {
+        margin-bottom: 0 !important;
+        &-colorpicker {
+            display: flex;
+            margin-left: 20px;
+            margin-top: 20px;
+            align-items: center;
+            p,
+            div {
+                margin-bottom: 0;
+            }
+            p {
+                transform: translateY(-2px);
+                width: 100px;
+            }
+        }
+        &-item {
+            .ant-checkbox + span {
+                padding-right: 8px;
+                margin-top: -5px;
+                padding-left: 8px;
+            }
+            label.ant-checkbox-wrapper {
+                width: 100%;
+                margin-top: 30px;
+            }
+            &-text {
+                color: rgba(0, 0, 0, 0.65);
+            }
+        }
+    }
+    &-label > .ant-form-item-label > label {
+        font-weight: bold !important;
+        margin-bottom: 0px !important;
+    }
+    &-label > .ant-form-item-label {
+        line-height: 35px !important;
+        padding-bottom: 0;
+    }
+    .colorTrigger {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        border: 1px solid black;
+        border-radius: 3px;
+        padding: 2px;
+    }
+}

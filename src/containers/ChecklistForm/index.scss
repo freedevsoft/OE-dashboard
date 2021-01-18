@@ -1,0 +1,37 @@
+.checklist-form {
+  .name {
+    margin-left: 10px;
+  }
+  .checklist-form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .checkbox-button {
+      align-self: center;
+      transform: translateY(5px);
+      margin: 5px;
+    }
+  }
+  .editable-button {
+    margin-bottom: 15px;
+    width: 100%;
+    text-align: right;
+  }
+  .ant-legacy-form-item {
+    display: block;
+    margin: 0;
+    label {
+      margin-bottom: 0;
+      margin-left: 10px;
+    }
+  }
+  .zone {
+    height: 50px;
+    width: 100%;
+    border: 1px dashed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}

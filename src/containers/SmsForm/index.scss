@@ -1,0 +1,82 @@
+.oe-sms-form {
+    .editable-button {
+        margin-bottom: 15px;
+        width: 100%;
+        text-align: right;
+        padding-right: 95px;
+        display: flex;
+        justify-content: space-between;
+        p {
+            font-weight: bold;
+            color: black;
+            width: 85px;
+            padding-right: 8px;
+        }
+    }
+    &-view {
+        margin-left: 85px;
+        width: 75%;
+        border: 1px solid gray;
+        padding: 5px;
+    }
+    &-template {
+        display: flex;
+        p {
+            color: black;
+            width: 85px;
+            padding-right: 8px;
+            font-weight: bold;
+            text-align: right;
+        }
+    }
+    &-buttongroup {
+        display: flex;
+        margin-bottom: 30px;
+        margin-top: -25px;
+        &-button {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 4px;
+        }
+        &-endbutton {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 4px;
+            margin-left: auto;
+        }
+    }
+    .ant-col.ant-form-item-label {
+        width: 85px;
+        font-weight: bold;
+    }
+    .ant-row.ant-form-item {
+        width: 94%;
+        display: flex;
+        margin-bottom: 0px !important;
+        .ant-col.ant-form-item-control-wrapper {
+            width: 80%;
+        }
+    }
+    .add-new {
+        margin-right: 0px;
+        border-left: 8px solid gray;
+        margin-bottom: 30px;
+
+        input {
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-left: 6px;
+            width: calc(100% - 20px);
+            border-width: 1px;
+            margin-left: 10px;
+        }
+    }
+}

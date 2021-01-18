@@ -1,0 +1,16 @@
+.oz-form-publish {
+  padding-left: 30px;
+  .primary-label {
+    margin-bottom: 0;
+    .ant-form-item-control-wrapper {
+      margin-left: 1rem;
+    }
+  }
+  .primary-label > .ant-form-item-label > label {
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+  .primary-label > .ant-form-item-label {
+    line-height: 35px;
+  }
+}

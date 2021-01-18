@@ -1,0 +1,27 @@
+.oe-cabinet-form {
+    position: relative;
+    &-item {
+        display: flex;
+        flex-direction: row;
+        margin-left: 0px;
+        background-color: rgb(36, 45, 60);
+        border-left: 8px solid gray;
+        margin-top: 1px;
+        &-icons {
+            margin-right: 5px;
+            margin-left: 5px;
+            align-self: center;
+        }
+    }
+    .acc_item_line {
+        position: absolute;
+        width: calc(100% - 20px);
+        height: 1px;
+        background: lightgray;
+        top: 0px !important;
+        left: 10px;
+        &-bottom {
+            bottom: 0px;
+        }
+    }
+}

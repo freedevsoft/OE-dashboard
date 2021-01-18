@@ -1,0 +1,19 @@
+.form-group-actions {
+    .primary-label {
+      margin-bottom: 0 !important;
+    }
+    .primary-label > .ant-form-item-label > label {
+      font-weight: bold !important;
+      margin-bottom: 0px !important;
+    }
+    .primary-label > .ant-form-item-label {
+      line-height: 35px !important;
+      padding-bottom: 0;
+    }
+  
+    .ant-checkbox-wrapper {
+      display: block;
+      margin-left: 20px !important;
+      margin-top: 5px;
+    }
+  }

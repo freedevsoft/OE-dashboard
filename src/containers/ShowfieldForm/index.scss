@@ -1,0 +1,21 @@
+.bits-form-style-v2 {
+  .primary-label {
+    margin-bottom: 0 !important;
+  }
+  .primary-label > .ant-form-item-label > label {
+    font-weight: bold !important;
+    margin-bottom: 0px !important;
+  }
+  .primary-label > .ant-form-item-label {
+    line-height: 35px !important;
+    padding-bottom: 0;
+  }
+  .colorTrigger {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 2px;
+  }
+}

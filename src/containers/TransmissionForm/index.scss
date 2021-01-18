@@ -1,0 +1,106 @@
+.oe-transmission-form {
+  &-item {
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+
+    &-title {
+      width: 12rem;
+      display: inline-block;
+      margin-left: 30px;
+      text-align: right;
+      padding-right: 15px;
+      font-weight: bold;
+    }
+
+    &-upload {
+      width: calc(100% - 250px);
+      display: inline-block;
+    }
+  }
+
+  &-progressbar {
+    margin-left: 222px;
+    margin-right: 50px;
+  }
+
+  .ant-form-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+
+    &-label {
+      line-height: 16px;
+      padding-bottom: 0;
+      text-align: right;
+      padding-right: 5px;
+
+      label {
+        margin-bottom: 0px;
+        font-weight: bold;
+        white-space: normal;
+
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
+
+  .divider {
+    width: calc(80% - 56px);
+    margin-left: calc(10% + 63px);
+    // height: 1px;
+    background-color: black;
+    height: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .ant-form-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+
+    &-label {
+      line-height: 16px;
+      padding-bottom: 0;
+      text-align: right;
+      padding-right: 5px;
+
+      label {
+        margin-bottom: 0px;
+        font-weight: bold;
+        white-space: normal;
+
+        &:after {
+          content: none;
+        }
+      }
+    }
+  }
+
+  .oe-transmission-form-add-container {
+    flex-shrink: 1;
+    margin-left: 10px;
+
+    button {
+      position: relative;
+      float: right;
+      background: transparent;
+      color: black;
+      border-width: 1px;
+      font-weight: bold;
+      top: 0px;
+      right: 0px;
+      height: 100%;
+      padding: 0px 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: lightgray;
+    }
+  }
+}

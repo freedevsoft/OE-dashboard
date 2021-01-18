@@ -1,0 +1,9 @@
+.oe-pageview-container {
+  //border: 1px solid black;
+  flex-grow: 1;
+  padding: 0px 0px 0px 0px !important;
+  z-index: 8;
+  > div {
+    height: 100%;
+  }
+}

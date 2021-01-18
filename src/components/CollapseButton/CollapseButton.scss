@@ -1,0 +1,21 @@
+.myPanelRightHand {
+  position: absolute !important;
+  right: 0px;
+  top: 0px !important;
+  // /* transform: translate(-50%); */
+  transition: background-color 100ms linear 0s, color 100ms linear 0s,
+    opacity 300ms cubic-bezier(0.2, 0, 0, 1) 0s,
+    transform 300ms cubic-bezier(0.2, 0, 0, 1) 0s !important;
+  border-style: initial !important;
+  border-color: initial !important;
+  border-image: initial !important;
+  // border-radius: 50% !important;
+  // /* border-width: 1px; */
+  // box-shadow: rgba(9, 30, 66, 0.08) 0px 0px 0px 1px, rgba(9, 30, 66, 0.08) 0px 2px 4px 1px !important;
+}
+.myPanelRightHand:focus {
+  box-shadow: none !important;
+}
+.myPanelRightHandCollapsed {
+  right: 3px !important;
+}

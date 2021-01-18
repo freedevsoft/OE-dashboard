@@ -1,0 +1,17 @@
+.ant-tree {
+  .anticon {
+    color: black;
+  }
+}
+
+.ant-tree-child-tree > li span.ant-tree-node-content-wrapper {
+  width: calc(100% - 24px);
+}
+
+.ant-tree-child-tree > li span.ant-tree-node-content-wrapper .ant-tree-title {
+  width: calc(100% - 24px);
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  padding-right: 20px !important;
+}

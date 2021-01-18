@@ -1,0 +1,73 @@
+.oe-attachements-form {
+    &-upload {
+        margin-left: 30px;
+        width: 65%;
+        span.ant-upload.ant-upload-btn {
+            padding: 0 0;
+        }
+    }
+    &-buttongroup {
+        display: flex;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        position: absolute;
+        top: -10px;
+        width: 100%;
+        //align-items: flex-start;
+        //margin-bottom: 30px;
+        //margin-top: -25px;
+        &-button {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 4px;
+            cursor: pointer;           
+        }
+        &-endbutton {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            border-radius: 4px;
+            margin-left: auto;
+            cursor: pointer;
+            &:hover {
+                color: rgb(36, 45, 60);
+            }
+        }
+    }
+    .ant-form-item {
+        display: flex;
+        align-items: center;
+        &-label {
+            line-height: 16px;
+            padding-bottom: 0;
+            text-align: right;
+            padding-right: 5px;
+            label {
+                margin-bottom: 0px;
+                font-weight: bold;
+                white-space: normal;
+                &:after {
+                    content: none;
+                }
+            }
+        }
+    }
+    .ant-form-item-control-wrapper {
+        width: 100%;
+    }
+    .zone {
+        height: 30px;
+        width: 100%;
+        border: 1px dashed;
+        display: flex;
+        padding-left: 10px;
+        padding-top: 3px;
+    }
+}

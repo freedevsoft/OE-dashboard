@@ -1,0 +1,14 @@
+.grouping-style-form {
+    padding: 10px !important;
+    .grouping-style-title {
+        max-width: 400px;
+    }
+    .colorTrigger {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        border: 1px solid black;
+        border-radius: 3px;
+        padding: 2px;
+    }
+}

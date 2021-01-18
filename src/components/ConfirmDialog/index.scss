@@ -1,0 +1,71 @@
+.oe-confirm-dialog-wrapper {
+    background: rgba(230, 229, 229, 0.5);
+
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    .oe-confirm-dialog {
+        background: #E6E5E5;
+        border: 2px solid #65605F;
+        box-sizing: border-box;
+        position: absolute;
+        z-index: 10;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    
+        .mark-icon {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+        &__content {
+    
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 70px 20px;
+            h2 {
+                font-family: "Avenir Next";
+                font-style: normal;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 24px;
+                text-align: center;
+    
+                color: #000000;
+            }
+            h3 {
+                font-family: "Avenir Next";
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 22px;
+                text-align: center;
+                margin-bottom: 20px;
+    
+                color: #000000;
+            }
+            button {
+                background: #65605F;
+                border-radius: 5px;
+                box-shadow: 0px 4px 4px rgba(36, 45, 60, 0.25);
+    
+                font-family: "Avenir Next";
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 20px;
+                text-align: center;
+    
+                color: #FFFFFF;
+                padding: 6px 20px;
+            }
+        }
+    }
+}

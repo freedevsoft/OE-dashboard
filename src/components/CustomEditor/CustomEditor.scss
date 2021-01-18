@@ -1,0 +1,35 @@
+.rdw-editor-wrapper-container {
+  height: 100%;
+
+  // margin-left: 10px;
+  // margin-right: 15px;
+  line-height: initial;
+  .rdw-editor-wrapper {
+    margin-top: 10px;
+    box-sizing: content-box;
+    background: transparent;
+    border: 2px solid gray;
+    width: 100%;
+    height: calc(100% - 4px);
+    .rdw-editor-toolbar {
+      background: transparent;
+      .rdw-option-wrapper {
+        background: transparent;
+        padding: 0px;
+      }
+      .rdw-dropdown-wrapper {
+        background: transparent;
+      }
+    }
+    .rdw-editor-main {
+      height: calc(100% - 75px);
+      padding: 0px 5px;
+    }
+  }
+  .textareaStyle {
+    height: 100px;
+  }
+  .public-DraftStyleDefault-block {
+    margin: 0em 0;
+  }
+}

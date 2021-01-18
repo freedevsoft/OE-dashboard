@@ -1,0 +1,53 @@
+.bits-functionform {
+    &-label {
+        margin-bottom: 0 !important;
+        &-item {
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            &-buttontext {
+                display: flex;
+                flex-direction: row;
+                margin-right: 10px;
+                &-button {
+                    width: 36px;
+                    height: 36px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid black;
+                    border-radius: 4px;
+                    margin-right: 10px;
+                }
+            }
+            span.ant-checkbox {
+                // align-self: center;
+                margin-top: 13px;
+                &-checked::after {
+                    display: none !important;
+                }
+            }
+        }
+        &-divider {
+            height: 1px;
+            background-color: #ddd;
+            margin-top: -15px;
+        }
+    }
+    &-label > .ant-form-item-label > label {
+        font-weight: bold !important;
+        margin-bottom: 0px !important;
+    }
+    &-label > .ant-form-item-label {
+        line-height: 35px !important;
+        padding-bottom: 0;
+    }
+    .colorTrigger {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        border: 1px solid black;
+        border-radius: 3px;
+        padding: 2px;
+    }
+}
