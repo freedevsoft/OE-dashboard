@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArchive, faSitemap, faFolder, faFileAlt, faCog, faArrowLeft, faBars } from '@fortawesome/free-solid-svg-icons'
-import { Modal, Button, Breadcrumb, Menu, Dropdown } from 'antd'
+import { faArchive, faArrowLeft, faBars, faCog, faFileAlt, faFolder, faSitemap } from '@fortawesome/free-solid-svg-icons'
+import { Breadcrumb, Button, Dropdown, Menu, Modal } from 'antd'
 import _ from 'lodash'
 import GrayPanel from 'components/GrayPanel/GrayPanel'
 import ControlBtnsGroup from 'components/ControlBtnsGroup/ControlBtnsGroup'
@@ -13,6 +13,8 @@ import SettingForm from 'containers/SettingForm'
 import GroupInside from './GroupInside'
 import './GroupDetailPanel.scss'
 import { collectionConfigs } from 'utils/config'
+
+// import { list } from '../../../../../../.cache/typescript/4.1/node_modules/postcss/lib/postcss'
 
 const EnumSelected = {
   Cabinet: 0,
@@ -47,7 +49,7 @@ const GroupDetailPanel = ({
   onBack,
   selectItemEdit,
   onGroupCollectionSelect,
-  collectionName
+  collectionName,
 }) => {
   const [showFolderDoc, setShowFolderDoc] = useState(true)
   const [showFolderFol, setShowFolderFol] = useState(true)
@@ -65,15 +67,23 @@ const GroupDetailPanel = ({
   const [background, setBackground] = useState(localStorage.getItem('bgcolorcode') || '#242D3C')
   const [foreground, setForeground] = useState(localStorage.getItem('fgcolorcode') || '#FFF')
   const [highlight, setHighlight] = useState(localStorage.getItem('hlcolorcode') || '#f8e71c')
+  const [isSearchCloseIconVisible, setIsSearchCloseIconVisible] = useState(false)
+  const [datalist, setDataList] = useState([])
+  const [search, setSearch] = useState('')
+
   const inputElement = useRef(null)
+
   setInterval(() => {
-    if(localStorage.getItem('bgcolorcode'))
-    setBackground(localStorage.getItem('bgcolorcode'))
-    if(localStorage.getItem('fgcolorcode'))
-    setForeground(localStorage.getItem('fgcolorcode'))
-    if(localStorage.getItem('hlcolorcode'))
-    setHighlight(localStorage.getItem('hlcolorcode'))
-  }, 200);
+    if (localStorage.getItem('bgcolorcode')) {
+      setBackground(localStorage.getItem('bgcolorcode'))
+    }
+    if (localStorage.getItem('fgcolorcode')) {
+      setForeground(localStorage.getItem('fgcolorcode'))
+    }
+    if (localStorage.getItem('hlcolorcode')) {
+      setHighlight(localStorage.getItem('hlcolorcode'))
+    }
+  }, 200)
   const more = {
     width,
     minWidth,
@@ -84,7 +94,15 @@ const GroupDetailPanel = ({
   if (loading) {
     return (
       <GrayPanel title="Menu" {...style} {...more}>
-        <ControlBtnsGroup disabled style={{ width: '100%', display: 'flex', alignItems: 'center' }} hlcolor="#FFFF00">
+        <ControlBtnsGroup
+          disabled
+          style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          hlcolor="#FFFF00"
+        >
           <ControlButton Icon={faArchive} />
           <ControlButton Icon={faArrowLeft} />
         </ControlBtnsGroup>
@@ -97,6 +115,7 @@ const GroupDetailPanel = ({
     setInputValue(value)
   }
   useEffect(() => {
+    setDataList(dataList)
     // setTimeout(() => {
     //   inputElement?.current?.focus()
     // }, 1000)
@@ -127,14 +146,16 @@ const GroupDetailPanel = ({
     }
   }
   const childRender = dataList.map((item, index) => {
-    if (index === selectedIndex) return <GroupInside collectionName="Articles" groupId={item._id} key={index} onSelectItem={selectSubItem} />
+    if (index === selectedIndex) {
+      return <GroupInside collectionName="Articles" groupId={item._id} key={index} onSelectItem={selectSubItem} />
+    }
 
     return <div key={index} />
   })
   const setOriginColor = e => {
-    localStorage.setItem('bgcolorcode', '#242D3C');
-    localStorage.setItem('fgcolorcode', '#FFF');
-    localStorage.setItem('hlcolorcode', '#f8e71c');
+    localStorage.setItem('bgcolorcode', '#242D3C')
+    localStorage.setItem('fgcolorcode', '#FFF')
+    localStorage.setItem('hlcolorcode', '#f8e71c')
     setBackground('#242D3C')
     setForeground('#FFF')
     setHighlight('#f8e71c')
@@ -164,7 +185,7 @@ const GroupDetailPanel = ({
 
   const handleCollectionMenuClick = e => {
     onGroupCollectionSelect(e.key)
-  };
+  }
 
   const collectiongMenu = (
     <Menu onClick={handleCollectionMenuClick} selectable selectedKeys={[collectionName]}>
@@ -176,7 +197,23 @@ const GroupDetailPanel = ({
       ) 
     }
     </Menu>
-  );
+  )
+
+  const onSearch = e => {
+    setSearch(e.target.value)
+    if (e.key === 'Enter') {
+      const list = dataList.filter(item => {
+        return item.name.includes(e.target.value)
+      })
+      setDataList(list);
+    }
+  }
+
+  const onReset = () => {
+    document.getElementById('searchInput').value = '';
+    setDataList(dataList);
+    setIsSearchCloseIconVisible(false);
+  }
 
   return (
     <>
@@ -191,18 +228,40 @@ const GroupDetailPanel = ({
         hlcolor={highlight ? highlight : '#FFFF00'}
         {...more}
       >
-        <ControlBtnsGroup style={{ width: '100%', display: 'flex', alignItems: 'center', backgroundColor: background ? background : '#242D3C' }} hlcolor="#FFFF00">
+        <ControlBtnsGroup
+          style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            backgroundColor: background ? background : '#242D3C',
+          }}
+          hlcolor="#FFFF00"
+        >
           <Dropdown overlay={collectiongMenu} trigger={['click']}>
-            <ControlButton Icon={faBars} font={font} bgcolor={background ? background : '#242D3C'}
-                        fgcolor={foreground ? foreground : '#FFF'}
-                        hlcolor={highlight ? highlight : '#FFFF00'} />
+            <ControlButton
+              Icon={faBars}
+              font={font}
+              bgcolor={background ? background : '#242D3C'}
+              fgcolor={foreground ? foreground : '#FFF'}
+              hlcolor={highlight ? highlight : '#FFFF00'}
+            />
           </Dropdown>
-          <ControlButton Icon={faArchive} font={font} bgcolor={background ? background : '#242D3C'}
-        fgcolor={foreground ? foreground : '#FFF'}
-        hlcolor={highlight ? highlight : '#FFFF00'} onClick={() => onGroupTypeChange('/')} />
-          <ControlButton Icon={faArrowLeft} font={font} bgcolor={background ? background : '#242D3C'}
-        fgcolor={foreground ? foreground : '#FFF'}
-        hlcolor={highlight ? highlight : '#FFFF00'} onClick={onBack} />
+          <ControlButton
+            Icon={faArchive}
+            font={font}
+            bgcolor={background ? background : '#242D3C'}
+            fgcolor={foreground ? foreground : '#FFF'}
+            hlcolor={highlight ? highlight : '#FFFF00'}
+            onClick={() => onGroupTypeChange('/')}
+          />
+          <ControlButton
+            Icon={faArrowLeft}
+            font={font}
+            bgcolor={background ? background : '#242D3C'}
+            fgcolor={foreground ? foreground : '#FFF'}
+            hlcolor={highlight ? highlight : '#FFFF00'}
+            onClick={onBack}
+          />
           <div className="group-type-nav" style={{ backgroundColor: background ? background : '#242D3C' }}>
             <p className="group-type-nav-base">/</p>
             <Breadcrumb className="group-type-breadcrumb">
@@ -240,15 +299,42 @@ const GroupDetailPanel = ({
           /> */}
         </ControlBtnsGroup>
         <div className="ps-relative">
-          <input placeholder="search" className="s-input s-input__search js-search-field" />
+          <input
+            placeholder="search"
+            id="searchInput"
+            className="s-input s-input__search js-search-field"
+            type="search"
+            onKeyDown={e => onSearch(e)}
+            onFocus={() => setIsSearchCloseIconVisible(true)}
+          />
           <svg aria-hidden="true" className="s-input-icon s-input-icon__search svg-icon iconSearch" width="18" height="18" viewBox="0 0 18 18">
-            <path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z">
-            </path>
+            <path d="M18 16.5l-5.14-5.18h-.35a7 7 0 10-1.19 1.19v.35L16.5 18l1.5-1.5zM12 7A5 5 0 112 7a5 5 0 0110 0z"></path>
           </svg>
+          {isSearchCloseIconVisible && (
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="times"
+              className="svg-inline--fa fa-times fa-w-11  search-close-icon"
+              width="18"
+              viewBox="0 0 352 512"
+              height="18"
+              onClick={() => onReset()}
+            >
+              <path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path>
+            </svg>
+          )}
         </div>
-
-
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'stretch', height: '100%', marginTop: font == '11px' && '-11px' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'stretch',
+            height: '100%',
+            marginTop: font == '11px' && '-11px',
+          }}
+        >
           {onSelected && (
             <div
               style={{
@@ -332,7 +418,12 @@ const GroupDetailPanel = ({
                 />
                 <div
                   className="add_new_inputItem"
-                  style={{ marginRight: '0px', background: background, borderLeft: '8px solid gray', marginTop: '1px' }}
+                  style={{
+                    marginRight: '0px',
+                    background: background,
+                    borderLeft: '8px solid gray',
+                    marginTop: '1px',
+                  }}
                 >
                   <div className="oe-addnew-form-item" style={{ marginTop: font == '14px' ? '6px' : '4px' }}>
                     {showFolderFol ? (
@@ -341,19 +432,28 @@ const GroupDetailPanel = ({
                           <FontAwesomeIcon icon={faArchive} color="#FFF" />
                         </span>
                       ) : (
-                          <span onClick={() => setShowFolderFol(!showFolderFol)} className="oe-addnew-form-item-icons">
-                            <FontAwesomeIcon icon={faFolder} color="#FFF" />
-                          </span>
-                        )
-
-                    ) : (
                         <span onClick={() => setShowFolderFol(!showFolderFol)} className="oe-addnew-form-item-icons">
-                          <FontAwesomeIcon icon={faFileAlt} color="#FFF" />
+                          <FontAwesomeIcon icon={faFolder} color="#FFF" />
                         </span>
-                      )}
-                    <span style={{ background: '#FFF', display: 'inline-block', marginRight: '5px', flexGrow: 1 }}>
+                      )
+                    ) : (
+                      <span onClick={() => setShowFolderFol(!showFolderFol)} className="oe-addnew-form-item-icons">
+                        <FontAwesomeIcon icon={faFileAlt} color="#FFF" />
+                      </span>
+                    )}
+                    <span
+                      style={{
+                        background: '#FFF',
+                        display: 'inline-block',
+                        marginRight: '5px',
+                        flexGrow: 1,
+                      }}
+                    >
                       <input
-                        style={{ paddingTop: font == '14px' ? '6px' : '3px', paddingBottom: font == '14px' ? '6px' : '3px' }}
+                        style={{
+                          paddingTop: font == '14px' ? '6px' : '3px',
+                          paddingBottom: font == '14px' ? '6px' : '3px',
+                        }}
                         type="text"
                         placeholder="Add new"
                         value={inputValue}
@@ -369,13 +469,13 @@ const GroupDetailPanel = ({
             {selected === EnumSelected.Document && (
               <>
                 <AccordionList
-                  dataList={dataList}
+                  dataList={datalist}
                   selectedIndex={selectedIndex}
                   selectItem={selectItem}
                   selectItemEdit={selectItemEdit}
                   selectItemName={selectItemName}
                   selectIcon={selectIcon}
-                  itemEditable={dataList}
+                  // itemEditable={dataList}
                   bgcolor={background ? background : '#242D3C'}
                   fgcolor={foreground ? foreground : '#FFF'}
                   hlcolor={highlight ? highlight : '#FFFF00'}
@@ -397,7 +497,14 @@ const GroupDetailPanel = ({
                 >
                   {childRender}
                 </AccordionList>
-                <div className="add_new_inputItem" style={{ marginRight: '0px', background: background, borderLeft: '8px solid gray' }}>
+                <div
+                  className="add_new_inputItem"
+                  style={{
+                    marginRight: '0px',
+                    background: background,
+                    borderLeft: '8px solid gray',
+                  }}
+                >
                   <div className="oe-addnew-form-item" style={{ paddingTop: font == '14px' ? '6px' : '4px' }}>
                     {showFolderDoc ? (
                       groupType == '/' ? (
@@ -405,19 +512,29 @@ const GroupDetailPanel = ({
                           <FontAwesomeIcon icon={faArchive} color="#FFF" />
                         </span>
                       ) : (
-                          <span onClick={() => setShowFolderDoc(!showFolderDoc)} className="oe-addnew-form-item-icons">
-                            <FontAwesomeIcon icon={faFolder} color="#FFF" />
-                          </span>
-                        )
-                    ) : (
                         <span onClick={() => setShowFolderDoc(!showFolderDoc)} className="oe-addnew-form-item-icons">
-                          <FontAwesomeIcon icon={faFileAlt} color="#FFF" />
+                          <FontAwesomeIcon icon={faFolder} color="#FFF" />
                         </span>
-                      )}
+                      )
+                    ) : (
+                      <span onClick={() => setShowFolderDoc(!showFolderDoc)} className="oe-addnew-form-item-icons">
+                        <FontAwesomeIcon icon={faFileAlt} color="#FFF" />
+                      </span>
+                    )}
                     {/* <AddNewField newFieldText={newFieldText} font={font} onAdd={onAdd} inputValue={inputValue}/> */}
-                    <span style={{ background: '#FFF', display: 'inline-block', marginRight: '5px', flexGrow: 1 }}>
+                    <span
+                      style={{
+                        background: '#FFF',
+                        display: 'inline-block',
+                        marginRight: '5px',
+                        flexGrow: 1,
+                      }}
+                    >
                       <input
-                        style={{ paddingTop: font == '14px' ? '4px' : '2px', paddingBottom: font == '14px' ? '4px' : '2px' }}
+                        style={{
+                          paddingTop: font == '14px' ? '4px' : '2px',
+                          paddingBottom: font == '14px' ? '4px' : '2px',
+                        }}
                         type="text"
                         placeholder="Add new"
                         value={inputValue}
@@ -500,8 +617,8 @@ const GroupDetailPanel = ({
         onCancel={() => setShowSettingModal(false)}
         footer={[
           <Button
-            form=''
-            key='submit'
+            form=""
+            key="submit"
             type="primary"
             onClick={() => {
               setOriginColor()

@@ -1,3 +1,4 @@
+
 .group-inside-panel {
   .accordion {
     border: none !important;
@@ -91,7 +92,14 @@
 
 .ps-relative {
   position: relative !important;
+
+  .search-close-icon {
+    position: absolute;
+    margin-top: 10px;
+    right: 20px;
+  }
 }
+
 .s-input-icon {
   right: auto;
   left: .7em;
@@ -102,6 +110,7 @@
   margin-top: -9px;
   pointer-events: none;
 }
+
 .s-input {
   border-color: var(--black-200);
   background-color: var(--white);
