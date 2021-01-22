@@ -378,16 +378,16 @@ class AccordionList extends React.Component {
                                 <FontAwesomeIcon icon={faArchive} color={container?.data?.cfg?.color} />
                               </span>
                             ) : (
-                                <span onClick={() => this.onClickItemName(index)} style={{ width: '35px', textAlign: 'center', marginRight: '10px' }}>
+                              <span onClick={() => this.onClickItemName(index)} style={{ width: '35px', textAlign: 'center', marginRight: '10px' }}>
                                   <FontAwesomeIcon icon={faFolder} />
                                 </span>
-                              )}
+                            )}
                           </>
                         ) : (
-                            <span onClick={() => this.onClickItemName(index)} style={{ width: '35px', textAlign: 'center', marginRight: '10px' }}>
+                          <span onClick={() => this.onClickItemName(index)} style={{ width: '35px', textAlign: 'center', marginRight: '10px' }}>
                               <FontAwesomeIcon icon={faFileAlt} />
                             </span>
-                          )}
+                        )}
                       </>
                     )}
                     {!imagePanel && container?.data?.desc?.icon.url && (
@@ -417,32 +417,32 @@ class AccordionList extends React.Component {
                           <font style={{ color: 'red' }}>Line</font>
                         </span>
                       ) : (
-                            <span onClick={e => {
-                              isEditButtonVisible === false && (selectItemEdit && selectItemEdit(index) ,this.setState({ editpencil: true }))
-                            }}>{` ${container.name}`}</span>
-                          )}
+                        <span onClick={e => {
+                          isEditButtonVisible === false && (selectItemEdit && selectItemEdit(index) ,this.setState({ editpencil: true }))
+                        }}>{` ${container.name}`}</span>
+                      )}
                     </span>
 
                     {container.rightIcon &&
-                      (typeof container.rightIcon === 'string' ? (
-                        <img
-                          src={container.rightIcon}
-                          style={{
-                            maxWidth: '30px',
-                            maxHeight: '16px',
-                            marginTop: '3px',
-                            float: 'right',
-                            marginRight: '1rem',
-                          }}
-                          alt="scheduleStatus"
-                        />
-                      ) : (
-                          <FontAwesomeIcon
-                            icon={container.icon}
-                            className={container.rotate ? `fa-Folder fa-rotate-${container.rotate}` : 'fa-Folder'}
-                            style={{ float: 'right', marginRight: '1rem' }}
-                          />
-                        ))}
+                    (typeof container.rightIcon === 'string' ? (
+                      <img
+                        src={container.rightIcon}
+                        style={{
+                          maxWidth: '30px',
+                          maxHeight: '16px',
+                          marginTop: '3px',
+                          float: 'right',
+                          marginRight: '1rem',
+                        }}
+                        alt="scheduleStatus"
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        icon={container.icon}
+                        className={container.rotate ? `fa-Folder fa-rotate-${container.rotate}` : 'fa-Folder'}
+                        style={{ float: 'right', marginRight: '1rem' }}
+                      />
+                    ))}
                     {container.addon && (
                       <div
                         style={{
@@ -521,8 +521,8 @@ class AccordionList extends React.Component {
               {spaceLabel}
             </div>
           ) : (
-              ''
-            )
+            ''
+          )
         }
         {
           bottomArea && uploadFile ? (
@@ -532,8 +532,8 @@ class AccordionList extends React.Component {
               </Dragger>
             </div>
           ) : (
-              ''
-            )
+            ''
+          )
         }
       </Accordion >
     )
