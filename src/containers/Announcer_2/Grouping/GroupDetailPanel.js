@@ -194,7 +194,7 @@ const GroupDetailPanel = ({
           {menuItem.name}
         </Menu.Item>
         )
-      ) 
+      )
     }
     </Menu>
   )
@@ -490,6 +490,7 @@ const GroupDetailPanel = ({
                   // expandable
                   showSwitch={true}
                   duplicateSelectable
+                  isEditButtonVisible={false}
                   draggable
                   openEditable
                   onDragItem={onDragItem}

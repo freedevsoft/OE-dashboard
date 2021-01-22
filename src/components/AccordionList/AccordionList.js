@@ -6,8 +6,15 @@ import { Upload } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ControlButton from 'components/ControlButton/ControlButton'
 import ControlBtnsGroup from 'components/ControlBtnsGroup/ControlBtnsGroup'
-import { Accordion, AccordionItem, AccordionItemTitle, AccordionItemBody } from 'react-accessible-accordion'
-import { faFolder, faFolderOpen, faTrashAlt, faPencilAlt, faFileAlt, faArchive, faCalendar } from '@fortawesome/free-solid-svg-icons'
+import { Accordion, AccordionItem, AccordionItemBody, AccordionItemTitle } from 'react-accessible-accordion'
+import {
+  faArchive,
+  faFileAlt,
+  faFolder,
+  faFolderOpen,
+  faPencilAlt,
+  faTrashAlt,
+} from '@fortawesome/free-solid-svg-icons'
 
 import 'react-accessible-accordion/dist/fancy-example.css'
 import './AccordionList.scss'
@@ -143,6 +150,7 @@ class AccordionList extends React.Component {
       openEditable,
       selectItemEdit,
       groupType,
+      isEditButtonVisible
     } = this.props
 
     let { bgcolor, fgcolor, hlcolor } = this.props
@@ -292,7 +300,7 @@ class AccordionList extends React.Component {
                         fgcolor="white"
                         hlcolor="#FFD25B"
                       >
-                        <ControlButton
+                        {isEditButtonVisible &&  <ControlButton
                           Icon={faPencilAlt}
                           font={font}
                           toggled={selectedIndex == index && this.state.editpencil}
@@ -301,10 +309,9 @@ class AccordionList extends React.Component {
                           bgcolor={bgcolor}
                           fgcolor={fgcolor}
                           onClick={e => {
-                            selectItemEdit && selectItemEdit(index)
-                            this.setState({ editpencil: true })
+                            isEditButtonVisible && (selectItemEdit && selectItemEdit(index) ,this.setState({ editpencil: true }))
                           }}
-                        />
+                        />}
                         <ControlButton
                           Icon={faTrashAlt}
                           font={font}
@@ -539,6 +546,7 @@ AccordionList.propTypes = {
   draggable: PropTypes.bool,
   droppable: PropTypes.bool,
   duplicateSelectable: PropTypes.bool,
+  isEditButtonVisible:PropTypes.bool
 }
 
 AccordionList.defaultProps = {
@@ -548,6 +556,7 @@ AccordionList.defaultProps = {
   draggable: false,
   droppable: false,
   duplicateSelectable: false,
+  isEditButtonVisible:true
 }
 
 export default AccordionList
