@@ -525,7 +525,6 @@ const GroupDetailPanel = ({
                 >
                   {childRender}
                 </AccordionList>
-                <br/><br/><br/><br/><br/><br/><br/><br/>
                 <div
                   className="add_new_inputItem"
                   style={{
