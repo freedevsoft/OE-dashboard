@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ControlButton from 'components/ControlButton/ControlButton'
 import ControlBtnsGroup from 'components/ControlBtnsGroup/ControlBtnsGroup'
 import { Accordion, AccordionItem, AccordionItemBody, AccordionItemTitle } from 'react-accessible-accordion'
+import {sortableContainer, sortableElement} from 'react-sortable-hoc';
 import {
   faArchive,
   faFileAlt,
@@ -27,6 +28,24 @@ const CenterWrapper = styled.div`
   left: ${props => (props.width ? `calc(50% - ${props.width / 2}px)` : 'calc(50% - 35px)')};
   top: ${props => (props.height ? `calc(50% - ${props.height / 2}px)` : 'calc(50% - 35px)')};
 `
+const arrayMoveMutate = (array, from, to) => {
+	const startIndex = from < 0 ? array.length + from : from;
+
+	if (startIndex >= 0 && startIndex < array.length) {
+		const endIndex = to < 0 ? array.length + to : to;
+
+		const [item] = array.splice(from, 1);
+		array.splice(endIndex, 0, item);
+	}
+};
+
+const arrayMove = (array, from, to) => {
+	array = [...array];
+	arrayMoveMutate(array, from, to);
+	return array;
+};
+
+
 
 class AccordionList extends React.Component {
   inputText = ''
@@ -36,17 +55,16 @@ class AccordionList extends React.Component {
     this.state = {
       editable: [],
       editpencil: false,
+      items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6'],
+      tmpDataList:[],
     }
   }
+
 
   inputTextChanged = value => {
     this.inputText = value
   }
 
-  // upDate = (e) => {
-  //   this.props.upDate(e, this.state.inputValue);
-  //   this.setState({ inputValue: '' })
-  // }
 
   setEditable = index => {
     const { itemEditable, dataList } = this.props
@@ -114,7 +132,7 @@ class AccordionList extends React.Component {
     e.stopPropagation()
     if (selectIcon) selectIcon(index)
   }
-
+  
   render() {
     const {
       loading,
@@ -150,11 +168,18 @@ class AccordionList extends React.Component {
       openEditable,
       selectItemEdit,
       groupType,
-      isEditButtonVisible
+      isEditButtonVisible      
     } = this.props
 
     let { bgcolor, fgcolor, hlcolor } = this.props
-    const { editable, editpencil } = this.state
+    const { editable, editpencil, items,tmpDataList } = this.state
+    if (tmpDataList.length === 0 && dataList && dataList.length > 0) {
+      dataList.map((container, index) => (
+        this.state.tmpDataList.push(container)
+      ));
+    }
+
+
     if (theme) {
       bgcolor = constants.getBackground(theme)
       fgcolor = constants.getColor(theme)
@@ -182,7 +207,7 @@ class AccordionList extends React.Component {
       )
     }
 
-    if (!dataList) {
+    if (!tmpDataList) {
       return (
         <Accordion accordion id="mainContent" style={nofixed ? null : acrdStyle}>
           <CenterWrapper width={120} height={112}>
@@ -192,9 +217,289 @@ class AccordionList extends React.Component {
       )
     }
 
+    const onSortEnd = ({oldIndex, newIndex}) => {
+      console.log(oldIndex);
+      console.log(newIndex);
+      if(oldIndex === newIndex)
+      {
+        //isEditButtonVisible && (selectItemEdit && selectItemEdit(index) ,this.setState({ editpencil: true })
+        selectItemEdit(oldIndex);
+        this.setState({ editpencil: true });
+      }
+      else{
+        this.setState({ tmpDataList: arrayMove(tmpDataList, oldIndex, newIndex), });
+        // dataList = arrayMove(dataList, oldIndex, newIndex);
+      }
+    };
+
+    const SortableItem = sortableElement(({value,i}) => {let prefix = ''
+    if (value.icon) {
+      if (typeof value.icon === 'string') {
+        prefix = (
+          <img
+            src={value.icon}
+            style={{ maxWidth: value.maxIconWidth || '30px', maxHeight: value.maxIconHeight || '18px' }}
+            alt="prefix"
+          />
+        )
+      } else {
+        prefix = (
+          <FontAwesomeIcon icon={value.icon} className={value.rotate ? `fa-Folder fa-rotate-${value.rotate}` : 'fa-Folder'} />
+        )
+      }
+    } else if (value.prefix) {
+      prefix = value.prefix
+    } else if (itemThumb === 'folder') {
+      prefix = <FontAwesomeIcon icon={selectedIndex === i ? faFolderOpen : faFolder} className="fa-Folder" />
+    }
+
+    let borderLeftColor = 'gray'
+    if (value.borderLeftSecond) {
+      borderLeftColor = value.borderLeftSecond
+    } else if (border_left) {
+      borderLeftColor = border_left
+    }
+    return( <div > <AccordionItem
+key={`accordion_${i}`}
+onClick={() => {
+  this.onClickItem(i)
+}}
+
+>
+<AccordionItemTitle
+  className={`accordion__title${selectedIndex === i ? ' acc_selected_item' : ''}${dropIndex === i ? ' acc_drop_item' : ''}`}
+  style={{
+    color: selectedIndex === i ? fgcolor_selected : fgcolor,
+    background: imagePanel ? '#F8F5F5' : selectedIndex === i ? bgcolor_selected : bgcolor,
+    borderLeft: `8px solid ${borderLeftColor}`,
+    paddingTop: font == '14px' ? '8px' : '5px',
+    paddingBottom: font == '14px' ? '8px' : '5px',
+    fontWeight: selectedIndex === i ? 'bolder' : '',
+  }}
+>
+  {/* <div className="acc_item_left_line" style={{ background: value.borderLeftSecond || 'transparent' }} /> */}
+  <div className="acc_item_line" style={{ height: value.lineTopHeight || '1px' }} />
+  {dataList.length - 1 === i && (
+    <div className="acc_item_line acc_item_line-bottom" style={{ height: value.lineTopHeight || '1px' }} />
+  )}
+  <div>
+    <span style={{ marginTop: imagePanel && '4px', zIndex: 99 }}>
+      {openEditable && (
+        <ControlBtnsGroup
+          style={{
+            // width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            // backgroundColor: '#242d3c',
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            right: '15px',
+            left: 'unset',
+            zIndex: 100,
+          }}
+          // bgcolor="#242d3c"
+          bgcolor={bgcolor}
+          fgcolor="white"
+          hlcolor="#FFD25B"
+        >
+          {isEditButtonVisible &&  <ControlButton
+            Icon={faPencilAlt}
+            font={font}
+            toggled={selectedIndex == i && this.state.editpencil}
+            bluenavy={true}
+            hlcolor={hlcolor}
+            bgcolor={bgcolor}
+            fgcolor={fgcolor}
+            onClick={e => {
+              isEditButtonVisible && (selectItemEdit && selectItemEdit(i) ,this.setState({ editpencil: true }))
+            }}
+          />}
+          <ControlButton
+            Icon={faTrashAlt}
+            font={font}
+            bgcolor={bgcolor}
+            fgcolor={fgcolor}
+            onClick={e => {
+              e.stopPropagation()
+              if (onItemDeleteFunc) onItemDeleteFunc(i)
+            }}
+          />
+        </ControlBtnsGroup>
+      )}
+
+    </span>
+    <div
+      className="u-position-relative"
+      style={{
+        display: 'flex',
+        marginRight: expandable || i === selectedIndex ? '0px' : '0px',
+        marginLeft: !imagePanel && '10px',
+      }}
+    >
+      {!imagePanel && showSwitch && (
+        <span
+          onClick={e => this.onClickIcon(e, i)}
+          style={{
+            width: font == '14px' ? '12px' : '8px',
+            height: font == '14px' ? '12px' : '8px',
+            borderRadius: font == '14px' ? '12px' : '8px',
+            backgroundColor: prefix?.props?.checked ? '#64FF33' : 'red',
+            marginRight: '10px',
+            alignSelf: 'center',
+          }}
+        ></span>
+      )}
+      {imagePanel && (
+        <span onClick={e => this.onClickIcon(e, i)} style={{ width: '25%', display: 'inline-block' }}>
+          {prefix}
+        </span>
+      )}
+      {!imagePanel && (
+        <>
+          {value.name.endsWith('/') ? (
+            <>
+              {groupType == '/' ? (
+                !value?.data?.desc?.icon.url &&
+                <span onClick={() => this.onClickItemName(i)} style={{ width: '35px', textAlign: 'center', marginRight: '10px' }}>
+                  <FontAwesomeIcon icon={faArchive} color={value?.data?.cfg?.color} />
+                </span>
+              ) : (
+                <span onClick={() => this.onClickItemName(i)} style={{ width: '35px', textAlign: 'center', marginRight: '10px' }}>
+                    <FontAwesomeIcon icon={faFolder} />
+                  </span>
+              )}
+            </>
+          ) : (
+            <span onClick={() => this.onClickItemName(i)} style={{ width: '35px', textAlign: 'center', marginRight: '10px' }}>
+                <FontAwesomeIcon icon={faFileAlt} />
+              </span>
+          )}
+        </>
+      )}
+      {!imagePanel && value?.data?.desc?.icon.url && (
+        <span style={{ width: '35px', textAlign: 'center', marginRight: '10px' }}>
+          <img
+            src={value.data.desc.icon.url}
+            style={{
+              maxWidth: font == '14px' ? '20px' : '15px',
+              maxHeight: font == '14px' ? '20px' : '15px',
+            }}
+          />
+        </span>
+      )}
+      <span style={{ width: !imagePanel && '50%', display: !imagePanel && 'inline-block' }}>
+        {editable[i] ? (
+          <input
+            type="text"
+            defaultValue={`${value.name}`}
+            autoFocus
+            ref={this.setInputRef}
+            onChange={e => this.inputTextChanged(e.target.value)}
+            onKeyPress={e => this.handleEnter(e)}
+          />
+        ) : value.name == 'StoryLine' ? (
+          <span>
+            Story
+            <font style={{ color: 'red' }}>Line</font>
+          </span>
+        ) : (
+          <span onClick={e => {
+            isEditButtonVisible === false && (selectItemEdit && selectItemEdit(i) ,this.setState({ editpencil: true }))
+          }}>{` ${value.name}`} </span>
+        )}
+      </span>
+
+      {value.rightIcon &&
+      (typeof value.rightIcon === 'string' ? (
+        <img
+          src={value.rightIcon}
+          style={{
+            maxWidth: '30px',
+            maxHeight: '16px',
+            marginTop: '3px',
+            float: 'right',
+            marginRight: '1rem',
+          }}
+          alt="scheduleStatus"
+        />
+      ) : (
+        <FontAwesomeIcon
+          icon={value.icon}
+          className={value.rotate ? `fa-Folder fa-rotate-${value.rotate}` : 'fa-Folder'}
+          style={{ float: 'right', marginRight: '1rem' }}
+        />
+      ))}
+      {value.addon && (
+        <div
+          style={{
+            position: 'absolute',
+            right: expandable ? '4.5rem' : '4.3rem',
+            top: '-1px',
+            display: 'flex',
+            alignItems: 'center',
+            lineHeight: '21px',
+            fontSize: font == '14px' ? '11px' : '10px',
+          }}
+        >
+          {value.addon}
+        </div>
+      )}
+      {showTrash === true && (
+        <button type="button" className="btn trashcan_button" onClick={() => removeItem(i)}>
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fas"
+            data-icon="trash-alt"
+            className="svg-inline--fa fa-trash-alt fa-w-14 "
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              fill="currentColor"
+              d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"
+            />
+          </svg>
+        </button>
+      )}
+    </div>
+  </div>
+  {expandable && <div className="accordion__arrow" role="presentation" />}
+  {/* {!this.props.expandable && i === this.props.selectedIndex && (
+    <FontAwesomeIcon className="right-arrow" icon={faAngleRight} />
+  )} */}
+</AccordionItemTitle>
+{
+  expandable && (
+    <AccordionItemBody
+      style={{
+        color: fgcolor,
+        background: bgcolor,
+        // borderLeft: `8px solid ${borderLeftColor}`,
+      }}
+    >
+      {/* {children[i].props.collectionName == 'Articles' && */}
+      {children[i]}
+      {/* } */}
+    </AccordionItemBody>
+  )
+}
+</AccordionItem></div>)});
+
+    const SortableContainer = sortableContainer(({children}) => {
+      return <Accordion accordion id="mainContent">{children}</Accordion>;
+    });
+
     return (
-      <Accordion accordion id="mainContent">
-        {dataList.map((container, index) => {
+      <div>
+        <SortableContainer onSortEnd={onSortEnd}>
+        {tmpDataList.map((container, index) => (
+          <SortableItem key={`item-${index}`} index={index} value={container} i={index}/>
+        ))}
+      </SortableContainer>
+      {/* <Accordion accordion id="mainContent">
+        {tmpDataList.map((container, index) => {
           let prefix = ''
           if (container.icon) {
             if (typeof container.icon === 'string') {
@@ -228,10 +533,6 @@ class AccordionList extends React.Component {
               key={`accordion_${index}`}
               onClick={() => {
                 this.onClickItem(index)
-                // if (container.name.endsWith('/')) {
-                // groupName(container.name)
-                //   onGroupTypeChange(container.name)
-                // }
               }}
               draggable={draggable || droppable}
               onDragStart={e => {
@@ -275,9 +576,8 @@ class AccordionList extends React.Component {
                   fontWeight: selectedIndex === index ? 'bolder' : '',
                 }}
               >
-                {/* <div className="acc_item_left_line" style={{ background: container.borderLeftSecond || 'transparent' }} /> */}
                 <div className="acc_item_line" style={{ height: container.lineTopHeight || '1px' }} />
-                {dataList.length - 1 === index && (
+                {tmpDataList.length - 1 === index && (
                   <div className="acc_item_line acc_item_line-bottom" style={{ height: container.lineTopHeight || '1px' }} />
                 )}
                 <div>
@@ -323,24 +623,7 @@ class AccordionList extends React.Component {
                           }}
                         />
                       </ControlBtnsGroup>
-                      // <span
-                      //   onClick={e => {
-                      //     selectItemEdit && selectItemEdit(index)
-                      //   }}
-                      // >
-                      //   <FontAwesomeIcon icon={faPencilAlt} />
-                      // </span>
                     )}
-
-                    {/* <span
-                      style={{ marginLeft: '10px' }}
-                      onClick={e => {
-                        e.stopPropagation()
-                        if (onItemDeleteFunc) onItemDeleteFunc(index)
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </span> */}
                   </span>
                   <div
                     className="u-position-relative"
@@ -480,9 +763,6 @@ class AccordionList extends React.Component {
                   </div>
                 </div>
                 {expandable && <div className="accordion__arrow" role="presentation" />}
-                {/* {!this.props.expandable && index === this.props.selectedIndex && (
-                  <FontAwesomeIcon className="right-arrow" icon={faAngleRight} />
-                )} */}
               </AccordionItemTitle>
               {
                 expandable && (
@@ -493,9 +773,7 @@ class AccordionList extends React.Component {
                       borderLeft: `8px solid ${borderLeftColor}`,
                     }}
                   >
-                    {/* {children[index].props.collectionName == 'Articles' && */}
                     {children[index]}
-                    {/* } */}
                   </AccordionItemBody>
                 )
               }
@@ -510,7 +788,7 @@ class AccordionList extends React.Component {
               draggable={draggable || droppable}
               onDrop={e => {
                 if (droppable && onDropItem) {
-                  onDropItem(e, parseInt(e.dataTransfer.getData('drag_index'), 10), dataList.length)
+                  onDropItem(e, parseInt(e.dataTransfer.getData('drag_index'), 10), tmpDataList.length)
                 }
               }}
               onDragOver={e => {
@@ -535,7 +813,8 @@ class AccordionList extends React.Component {
             ''
           )
         }
-      </Accordion >
+      </Accordion > */}
+        </div>
     )
   }
 }

@@ -70,7 +70,7 @@ const GroupDetailPanel = ({
   const [isSearchCloseIconVisible, setIsSearchCloseIconVisible] = useState(false)
   const [datalist, setDataList] = useState([])
   const [search, setSearch] = useState('')
-
+//let items = ;
   const inputElement = useRef(null)
 
   setInterval(() => {
@@ -214,6 +214,7 @@ const GroupDetailPanel = ({
     setDataList(dataList);
     setIsSearchCloseIconVisible(false);
   }
+
 
   return (
     <>
@@ -411,6 +412,9 @@ const GroupDetailPanel = ({
                   bgcolor={background ? background : '#242D3C'}
                   fgcolor={foreground ? foreground : '#FFF'}
                   hlcolor={highlight ? highlight : '#FFFF00'}
+                  onDragItem={onDragItem}
+                  onDragStart={(event)=>dragit(event)}
+                  // ondragstart={(event)=>dragit(event)}
                   onItemDeleteFunc={deleteIndex => {
                     setSelectedGroupIndex(deleteIndex === groupTypes?.length - 1 ? deleteIndex - 1 : deleteIndex)
                     onRemoveGroupType(deleteIndex)
@@ -468,6 +472,25 @@ const GroupDetailPanel = ({
             )}
             {selected === EnumSelected.Document && (
               <>
+              <div>
+
+              </div>
+  {/* <tr draggable="true"  ondragstart="dragit(event)"  ondragover="dragover(event)">
+    <td>2</td>
+    <td>test</td>
+    <td>testing</td>
+  </tr>
+  <tr draggable="true"  ondragstart="dragit(event)"  ondragover="dragover(event)">
+    <td>3</td>
+    <td>hello</td>
+    <td>world</td>
+  </tr>
+  <tr draggable="true"  ondragstart="dragit(event)"  ondragover="dragover(event)">
+    <td>4</td>
+    <td>programming</td>
+    <td>javascript</td>
+  </tr>
+</table> */}
                 <AccordionList
                   dataList={datalist}
                   selectedIndex={selectedIndex}
@@ -493,11 +516,16 @@ const GroupDetailPanel = ({
                   isEditButtonVisible={false}
                   draggable
                   openEditable
+                  // onDragStart={(event)=>dragit(event)} 
+                  // onDragOver={(event)=>dragover(event)}
                   onDragItem={onDragItem}
+                  onDragStart={(event)=>dragit(event)}
+                  // onDragItem={onDragItem}
                   font={font}
                 >
                   {childRender}
                 </AccordionList>
+                <br/><br/><br/><br/><br/><br/><br/><br/>
                 <div
                   className="add_new_inputItem"
                   style={{
