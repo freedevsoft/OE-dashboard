@@ -59,11 +59,15 @@ export default class GrayPanel extends React.Component {
       fgcolor = constants.getColor(theme)
     }
 
-    if ((!bgcolor && !fgcolor) || title == 'Resources') {
+    if ((!bgcolor && !fgcolor)) {
       bgcolor = '#242D3C'
       fgcolor = 'black'
       bgcolor_selected = '#242D3C'
       hlcolor = '#f8e71c'
+    }
+
+    if (title == 'Resources') {
+      fgcolor = 'black'
     }
 
     const collapsed = panelCollapsed

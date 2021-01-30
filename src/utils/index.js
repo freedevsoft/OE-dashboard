@@ -76,9 +76,46 @@ export const createActionTypes = (base, actions = []) =>
     return acc
   }, {})
 
-export const API_REST_URL = 'https://backend-dev.oelement.openznet.com:4001/api'
-// export const API_REST_URL = 'http://localhost:4000/api'
-export const API_UPLOAD_FILE_TO_S3_URL = 'https://backend-dev.oelement.openznet.com:4001/api/media'
+// Extract query parameters to check if backend was specified.
+const qp = new URLSearchParams(window.location.search);
+
+var bepr = "SECURE";
+if (qp.has('backendprotocol')) {
+  bepr = qp.get("backendprotocol");
+}
+var bed = 'backend-dev.oelement.openznet.com';
+if (qp.has('backenddomain')) {
+  bed = qp.get("backenddomain");
+}
+var bep = '4001';
+if (qp.has('backendport')) {
+  bep = qp.get("backendport");
+}
+
+var beu = "https://"+bed+":"+bep;
+var wbeu = "wss://"+bed+":"+bep;;
+if (bepr == "STANDARD")
+{
+  beu = "http://"+bed+":"+bep;
+  wbeu = "ws://"+bed+":"+bep;;
+}
+
+export const backendProtocol = bepr;
+export const backendDomain = bed;
+export const backendPort = bep;
+export const urlBackend = beu;
+export const wsUrlBackend = wbeu;
+
+export const S3_BUCKET = 'assets.oelement.net'
+
+export const API_REST_URL = beu+'/api';
+export const API_UPLOAD_FILE_TO_S3_URL = beu+'/api/media';
+
+console.log("urlBackend: "+urlBackend);
+console.log("wsUrlBackend: "+wsUrlBackend);
+console.log("API_REST_URL: "+API_REST_URL);
+console.log("API_UPLOAD_FILE_TO_S3_URL: "+API_UPLOAD_FILE_TO_S3_URL);
+
 export const API_LAMBDA_UPLOAD_FILE = 'https://webq2f3t55.execute-api.us-east-1.amazonaws.com/prod/presigned-url'
 
 export const getDateDifferenceFromToday = updated_date => {
@@ -103,14 +140,6 @@ export const validateUrl = value =>
   /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(
     value,
   )
-
-
-export const backendProtocol = "SECURE"
-export const backendDomain = 'backend-dev.oelement.openznet.com'
-export const backendPort = '4001'
-export const urlBackend = 'https://' + backendDomain + ':' + backendPort;
-export const wsUrlBackend = 'wss://' + backendDomain + ':' + backendPort;
-export const S3_BUCKET = 'assets.oelement.net'
 
 export default createActionTypes
 

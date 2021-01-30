@@ -8,7 +8,7 @@ import { split } from 'apollo-link'
 import { WebSocketLink } from 'apollo-link-ws'
 import { getMainDefinition } from 'apollo-utilities'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { urlBackend, wsUrlBackend, backendProtocol, backendDomain, backendPort } from './utils/index'
+import { urlBackend, wsUrlBackend } from './utils/index'
 import configureStore from './store'
 import Routes from './routes/index'
 import { getUserInfo } from './utils/queries'
@@ -24,46 +24,12 @@ class App extends Component {
       return null
     }
 
-    // Extract query parameters to check if backend was specified.
-    const qp = new URLSearchParams(window.location.search);
-    
-    let bepr = "SECURE";
-    if (qp.has('backendprotocol')) {
-      bepr = qp.get("backendprotocol");
-    }
-    let bed = backendDomain;
-    if (qp.has('backenddomain')) {
-      bed = qp.get("backenddomain");
-    }
-    let bep = backendPort;
-    if (qp.has('backendport')) {
-      bep = qp.get("backendport");
-    }
-
-    let beu = "https://"+bed+":"+bep;
-    let wbeu = "wss://"+bed+":"+bep;;
-    if (bepr == "STANDARD")
-    {
-      beu = "http://"+bed+":"+bep;
-      wbeu = "ws://"+bed+":"+bep;;
-    }
-
-    if (qp.has('backendurl')) {
-      beu = qp.get("backendurl");
-    }
-    console.log ("beu: "+beu);
-    if (qp.has('wsbackendurl')) {
-      wbeu = qp.get("wsbackendurl");
-    }
-    console.log ("wbeu: "+wbeu);
-
-
     const httpLink = new HttpLink({
-      uri: beu,
+      uri: urlBackend,
     })
 
     const wsLink = new WebSocketLink({
-      uri: wbeu,
+      uri: wsUrlBackend,
     })
 
     const link = split(
