@@ -54,6 +54,7 @@ export default class ControlButton extends React.Component {
       if (bluenavy) {
         inlineStyle.backgroundColor = hlcolor
       } else {
+        inlineStyle.color = bgcolor
         inlineStyle.backgroundColor = fgcolor
       }
       inlineStyle.border = `1px solid ${fgcolor}`
