@@ -2,7 +2,7 @@
   "version": "1.0.8",
   "description": "OE-Dashboard",
   "main": "index.js",
-  "author": "Azita",
+  "author": "Vudung",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.2.2",

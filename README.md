@@ -17,14 +17,6 @@ We have created multiple clients that can have an isolated access to the data.  
 Ultimately everything will be controlled via the OE-Dashboard based on user permissions and product settings and configuration.
 
 
-# OE-Dashboard Repo Access, building, and running
-## Cloning
-First you need to clone the repo OE-Dashboard and get the latest code
-    
-    $ git clone git@bitbucket.org:openznet/oe-dashboard
-    $ cd oe-dashboard
-    $ git pull
-    
 ## Changes
 After making the changes
     
